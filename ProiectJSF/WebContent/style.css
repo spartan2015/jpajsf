@@ -1,0 +1,13 @@
+html{
+	font-size: 12px;
+	font-family: fantasy;
+	
+}
+body{
+	background-color: aqua;
+}
+
+table{
+	border: dashed 1px black;
+	padding: 10px;
+}
