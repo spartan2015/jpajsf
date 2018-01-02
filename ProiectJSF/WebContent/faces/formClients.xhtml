@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <title>Form Clients</title>
+    </h:head>
+    <h:body>
+    	<a href="#{request.contextPath}/faces/formProdus.xhtml">Produse</a>
+    
+    	<h2>Clients</h2>
+    	
+    	<h:form>
+    	<h:messages></h:messages>
+    	<h:dataTable value="#{formClienti.clients}" var="client">
+    		<h:column>
+    			<f:facet name="header">Id</f:facet>    				
+    				#{client.id}
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">Nume</f:facet>    			
+    				 <h:inputText value="#{client.nume}" size="10"  />
+    		</h:column>
+    		<h:column>
+    			<h:commandLink value="Delete" action="#{formClienti.delete(client)}"
+                                       />
+    		</h:column>
+    	</h:dataTable>
+    	<h:commandButton value="Save Changes" action="#{formClienti.saveAll}" />
+    	
+    	
+    	
+    	<h2>Add Client</h2>
+    	
+    		<h:inputText value="#{formClienti.nume}"></h:inputText>
+    		<h:commandButton action="#{formClienti.add}"></h:commandButton>
+    	</h:form>
+    </h:body>
+</html>
