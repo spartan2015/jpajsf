@@ -2,42 +2,58 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-    <h:head>
-        <title>Form Clients</title>
-        <link href="#{request.contextPath}/style.css" media="all" rel="stylesheet" />
-    </h:head>
-    <h:body>
-    	<a href="#{request.contextPath}/faces/formProdus.xhtml">Produse</a>
-    
-    	<h2>Clients</h2>
-    	
-    	<h:form>
-    	<h:messages></h:messages>
-    	<h:dataTable value="#{formClienti.clients}" var="client">
-    		<h:column>
-    			<f:facet name="header">Id</f:facet>    				
+<h:head>
+	<title>Form Clients</title>
+	<link href="#{request.contextPath}/style.css" media="all"
+		rel="stylesheet" />
+</h:head>
+<h:body>
+	<a href="#{request.contextPath}/faces/formProdus.xhtml">Produse</a>
+
+	<h2>Clients</h2>
+
+	<h:form>
+		<h:messages></h:messages>
+		<h:dataTable value="#{formClienti.clients}" var="client">
+			<h:column>
+				<f:facet name="header">Id</f:facet>    				
     				#{client.id}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">Nume</f:facet>    			
-    				 <h:inputText value="#{client.nume}" size="10"  />
-    		</h:column>
-    		<h:column>
-    			<h:commandLink value="Delete" action="#{formClienti.delete(client)}"
-                                       />
-    		</h:column>
-    	</h:dataTable>
-    	<h:commandButton value="Save Changes" action="#{formClienti.saveAll}" />
-    	
-    	
-    	
-    	<h2>Add Client</h2>
-    	
-    		<h:inputText value="#{formClienti.nume}"></h:inputText>
-    		<h:commandButton action="#{formClienti.add}"></h:commandButton>
-    	</h:form>
-    </h:body>
+			<h:column>
+				<f:facet name="header">Nume</f:facet>
+				<h:inputText value="#{client.nume}" size="10" />
+			</h:column>
+			<h:column>
+				<h:commandLink value="Delete" action="#{formClienti.delete(client)}" />
+			</h:column>
+		</h:dataTable>
+		<h:commandButton value="Save Changes" action="#{formClienti.saveAll}" />
+	</h:form>
+
+
+	<h:form>
+		<h2>Add Client</h2>
+
+		<h:panelGrid columns="3">
+			<h:outputText value="Nume"></h:outputText>
+			<h:inputText id="nume1" value="#{formClienti.nume}"></h:inputText>
+			<h:message for="nume1"></h:message>
+		</h:panelGrid>
+		<h:commandButton action="#{formClienti.add}" value="Adauga"></h:commandButton>
+	</h:form>
+
+
+	<h:form>
+		<h2>Cauta Client</h2>
+		<h:panelGrid columns="3">
+			<h:outputText value="Nume"></h:outputText>
+			<h:inputText id="nume2" value="#{formClienti.nume}"></h:inputText>
+			<h:message for="nume2"></h:message>
+		</h:panelGrid>
+		<h:commandButton action="#{formClienti.cauta}" value="Cauta"></h:commandButton>
+	</h:form>
+</h:body>
 </html>

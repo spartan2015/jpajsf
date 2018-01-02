@@ -17,11 +17,10 @@ public class FormProdus {
 		String denumire;
 		String um;
 		Double pretUnitar;
-		private EntityManagerFactory emf;
+		
 
-		public FormProdus() {
-			emf = Persistence.createEntityManagerFactory("ProduseJPA");
-			EntityManager em = emf.createEntityManager();
+		public FormProdus() {			
+			EntityManager em = JpaUtil.getEmf().createEntityManager();
 			produse = (List<Produs>) em.createQuery("select p from Produs p").getResultList();
 		}
 
@@ -69,7 +68,7 @@ public class FormProdus {
 		//---------------------------//
 
 		public String add() {
-			EntityManager em = emf.createEntityManager();
+			EntityManager em = JpaUtil.getEmf().createEntityManager();
 			em.getTransaction().begin();
 			Produs produs = new Produs();
 			produs.setDenumire(this.denumire);
@@ -88,7 +87,7 @@ public class FormProdus {
 		//stergere produse din BD
 
 		public String delete(Produs produs) {
-			EntityManager em = emf.createEntityManager();
+			EntityManager em = JpaUtil.getEmf().createEntityManager();
 			em.getTransaction().begin();
 
 			produs = em.merge(produs);
@@ -101,7 +100,7 @@ public class FormProdus {
 		}
 
 		public String saveAll() {
-			EntityManager em = emf.createEntityManager();
+			EntityManager em = JpaUtil.getEmf().createEntityManager();
 			em.getTransaction().begin();
 			for (Produs produs : produse) {			
 				em.merge(produs);

@@ -15,11 +15,10 @@ import org.comenzi.model.Client;
 public class FormClienti {
 	List<Client> clients;
 	String nume;
-	private EntityManagerFactory emf;
+	
 
-	public FormClienti() {
-		emf = Persistence.createEntityManagerFactory("ProduseJPA");
-		EntityManager em = emf.createEntityManager();
+	public FormClienti() {		
+		EntityManager em = JpaUtil.getEmf().createEntityManager();
 		clients = (List<Client>) em.createQuery("select c from Client c").getResultList();
 	}
 
@@ -36,20 +35,32 @@ public class FormClienti {
 	}
 
 	public String add() {
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = JpaUtil.getEmf().createEntityManager();
 		em.getTransaction().begin();
 		Client client = new Client();
 		client.setNume(this.nume);
 		em.persist(client);
 		em.getTransaction().commit();
 
-		clients = (List<Client>) em.createQuery("select c from Client c").getResultList();
+		clients = (List<Client>) em.createQuery("select c from Client c")
+				.getResultList();
+		this.nume = null;
+		return null;
+	}
+	
+	public String cauta() {
+		EntityManager em = JpaUtil.getEmf().createEntityManager();
+		
 
+		clients = (List<Client>) em.createQuery("select c from Client c where c.nume like '%" + nume + "%'")
+				.getResultList();
+
+		this.nume = null;
 		return null;
 	}
 
 	public String delete(Client client) {
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = JpaUtil.getEmf().createEntityManager();
 		em.getTransaction().begin();
 
 		client = em.merge(client);
@@ -62,7 +73,7 @@ public class FormClienti {
 	}
 
 	public String saveAll() {
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = JpaUtil.getEmf().createEntityManager();
 		em.getTransaction().begin();
 		for (Client client : clients) {			
 			em.merge(client);
