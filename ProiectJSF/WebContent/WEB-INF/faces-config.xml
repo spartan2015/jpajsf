@@ -1,20 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config
-    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-    version="2.2">
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
 	<managed-bean>
 		<managed-bean-name>formClienti</managed-bean-name>
 		<managed-bean-class>form.FormClienti</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 
-  
+
 	<managed-bean>
 		<managed-bean-name>formProdus</managed-bean-name>
 		<managed-bean-class>form.FormProdus</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 
+	<managed-bean>
+		<managed-bean-name>formArticolComanda</managed-bean-name>
+		<managed-bean-class>form.FormArticolComanda</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>formComanda</managed-bean-name>
+		<managed-bean-class>form.FormComanda</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<converter>
+		<converter-id>clientConverter</converter-id>
+		<converter-class>converter.ClientConverter</converter-class>
+	</converter>
+	
+	<converter>
+		<converter-id>produsConverter</converter-id>
+		<converter-class>converter.ProdusConverter</converter-class>
+	</converter>
+	
+	<converter>
+		<converter-id>comandaConverter</converter-id>
+		<converter-class>converter.ComandaConverter</converter-class>
+	</converter>
 </faces-config>

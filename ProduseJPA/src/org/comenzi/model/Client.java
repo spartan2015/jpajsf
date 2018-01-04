@@ -7,6 +7,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import static javax.persistence.GenerationType.AUTO;
+import javax.persistence.DiscriminatorColumn;
+import static javax.persistence.DiscriminatorType.CHAR;
 
 @Entity
 public class Client {

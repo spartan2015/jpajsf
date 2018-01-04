@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Form ArticolComanda</title>
+	<link href="#{request.contextPath}/style.css" media="all"
+		rel="stylesheet" />
+</h:head>
+<h:body>
+	<a href="#{request.contextPath}/faces/formProdus.xhtml">Produse</a>
+	<br/>
+	<a href="#{request.contextPath}/faces/formComanda.xhtml">Comenzi</a>
+	<br/>
+	<a href="#{request.contextPath}/faces/formClients.xhtml">Clienti</a>
+
+	<h2>Comanda</h2>
+	<h:panelGrid columns="2">
+		<h:outputText value="Id" />
+		<h:outputText value="#{formArticolComanda.comanda.id}" />
+
+		<h:outputText value="Data" />
+		<h:outputText value="#{formArticolComanda.comanda.dataComanda}">
+			<f:convertDateTime pattern="dd-MM-yyyy" />
+		</h:outputText>
+
+		<h:outputText value="Client" />
+		<h:outputText value="#{formArticolComanda.comanda.client.nume}" />
+	</h:panelGrid>
+
+	<h2>Articole</h2>
+
+	<h:form>
+		<h:messages></h:messages>
+
+		<h:dataTable value="#{formArticolComanda.articole}" var="articol">
+			<h:column>
+				<f:facet name="header">Id</f:facet>    				
+    				#{articol.id}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Produs</f:facet>
+				<h:selectOneMenu id="produs" value="#{articol.produs}"
+					converter="produsConverter">
+					<f:selectItems value="#{formProdus.produse}" var="produs"
+						itemValue="#{produs}" itemLabel="#{produs.denumire}" />
+				</h:selectOneMenu>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Cantitate</f:facet>
+				<h:inputText value="#{articol.cantitate}" size="10" />
+			</h:column>
+			<h:column>
+				<h:commandLink value="Sterge articol"
+					action="#{formArticolComanda.delete(articol)}">
+					<f:param name="idComanda" value="#{formArticolComanda.comanda.id}"></f:param>
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+		
+		<h:commandLink value="Save All"
+			action="#{formArticolComanda.saveAll()}">
+			<f:param name="idComanda" value="#{formArticolComanda.comanda.id}"></f:param>
+		</h:commandLink>
+	</h:form>
+
+
+	<h:form>
+		<h2>Add ArticolComanda</h2>
+
+		<h:panelGrid columns="3">
+			<h:outputText value="Produs"></h:outputText>
+			<h:selectOneMenu id="produs" value="#{formArticolComanda.produs}"
+				converter="produsConverter">
+				<f:selectItems value="#{formProdus.produse}" var="produs"
+					itemValue="#{produs}" itemLabel="#{produs.denumire}" />
+			</h:selectOneMenu>
+			<h:message for="produs"></h:message>
+
+			<h:outputText value="Cantitate"></h:outputText>
+			<h:inputText id="cantitate" value="#{formArticolComanda.cantitate}"></h:inputText>
+			<h:message for="cantitate"></h:message>
+
+		</h:panelGrid>
+		<h:inputHidden value="#{formArticolComanda.comanda}"
+			converter="comandaConverter"></h:inputHidden>
+		<h:commandButton action="#{formArticolComanda.add}" value="Adauga"></h:commandButton>
+	</h:form>
+
+
+	<h:form>
+		<h2>Cauta ArticolComanda</h2>
+		<h:panelGrid columns="3">
+			<h:outputText value="Produs"></h:outputText>
+			<h:selectOneMenu id="produs" value="#{formArticolComanda.produs}"
+				converter="produsConverter">
+				<f:selectItems value="#{formProdus.produse}" var="produs"
+					itemValue="#{produs}" itemLabel="#{produs.denumire}" />
+			</h:selectOneMenu>
+			<h:message for="produs"></h:message>
+		</h:panelGrid>
+		<h:inputHidden value="#{formArticolComanda.comanda}"
+			converter="comandaConverter"></h:inputHidden>
+		<h:commandButton action="#{formArticolComanda.cauta}" value="Cauta"></h:commandButton>
+	</h:form>
+</h:body>
+</html>

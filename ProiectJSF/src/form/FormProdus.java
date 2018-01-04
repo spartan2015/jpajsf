@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.comenzi.model.Client;
 import org.comenzi.model.Produs;
 
 @ManagedBean("formProdus")
@@ -108,6 +109,17 @@ public class FormProdus {
 			em.getTransaction().commit();
 
 			produse = (List<Produs>) em.createQuery("select p from Produs p").getResultList();
+			return null;
+		}
+		
+		public String cauta() {
+			EntityManager em = JpaUtil.getEmf().createEntityManager();
+			
+
+			produse = (List<Produs>) em.createQuery("select p from Produs p where p.denumire like '%" + denumire + "%'")
+					.getResultList();
+
+			this.denumire = null;
 			return null;
 		}
 }

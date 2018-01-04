@@ -6,7 +6,9 @@
 		<class>org.comenzi.model.ArticolComanda</class>
 		<class>org.comenzi.model.Client</class>
 		<class>org.comenzi.model.Comanda</class>
+		<class>org.comenzi.model.Furnizor</class>
 		<class>org.comenzi.model.Produs</class>
+		<class>org.comenzi.model.TipFunizor</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		
 		<properties>

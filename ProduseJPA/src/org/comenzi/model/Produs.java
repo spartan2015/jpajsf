@@ -1,9 +1,11 @@
 package org.comenzi.model;
 
+import org.comenzi.model.ProduseAlimentare;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.AUTO;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Produs {
@@ -17,6 +19,9 @@ public class Produs {
 	private String um;
 	
 	private Double pretUnitar;
+	
+	
+	//private ProduseAlimentare catprodus;
 
 	// Constructori
 	

@@ -11,7 +11,11 @@
     </h:head>
     <h:body>
     
-    	<a href="#{request.contextPath}/faces/formClients.xhtml">Clienti</a>
+    	<a href="#{request.contextPath}/faces/formProdus.xhtml">Produse</a>
+	<br/>
+	<a href="#{request.contextPath}/faces/formComanda.xhtml">Comenzi</a>
+	<br/>
+	<a href="#{request.contextPath}/faces/formClients.xhtml">Clienti</a>
     
     	<h2>Produse</h2>
     	
@@ -52,8 +56,8 @@
     	<h2>Adauga Produs</h2>
     	<h:panelGrid columns="3">
     		<h:outputText value="Denumire"></h:outputText>
-    		<h:inputText id="denumire" value="#{formProdus.denumire}"></h:inputText>
-    		<h:message for="denumire"></h:message>
+    		<h:inputText id="denumire1" value="#{formProdus.denumire}"></h:inputText>
+    		<h:message for="denumire1"></h:message>
     		
     		<h:outputText value="UM"></h:outputText>
     		<h:inputText i="um" value="#{formProdus.um}"></h:inputText>
@@ -66,5 +70,16 @@
     		
     		<h:commandButton action="#{formProdus.add}"></h:commandButton>
     	</h:form>
+    	
+    	<h:form>
+		<h2>Cauta produs</h2>
+		<h:panelGrid columns="6">
+			<h:outputText value="Denumire"></h:outputText>
+			<h:inputText id="denumire2" value="#{formProdus.denumire}"></h:inputText>
+			<h:message for="denumire2"></h:message>
+		</h:panelGrid>
+		<h:commandButton action="#{formProdus.cauta}" value="Cauta"></h:commandButton>
+	</h:form>
+    	
     </h:body>
 </html>

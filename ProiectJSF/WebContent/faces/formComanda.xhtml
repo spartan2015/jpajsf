@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Form Comanda</title>
+	<link href="#{request.contextPath}/style.css" media="all"
+		rel="stylesheet" />
+</h:head>
+<h:body>
+	<a href="#{request.contextPath}/faces/formProdus.xhtml">Produse</a>
+	<br/>
+	<a href="#{request.contextPath}/faces/formComanda.xhtml">Comenzi</a>
+	<br/>
+	<a href="#{request.contextPath}/faces/formClients.xhtml">Clienti</a>
+
+	<h2>Comenzi</h2>
+
+	<h:form>
+		<h:messages></h:messages>
+		<h:dataTable value="#{formComanda.comenzi}" var="comanda">
+			<h:column>
+				<f:facet name="header">Id</f:facet>    				
+    				#{comanda.id}
+    		</h:column>
+			<h:column>
+				<f:facet name="header">Data</f:facet>
+				<h:inputText id="date" value="#{comanda.dataComanda}" size="20"
+					required="true" label="Data Comanda">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:inputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Client</f:facet>
+				<h:selectOneMenu id="client" value="#{comanda.client}"
+					converter="clientConverter">
+					<f:selectItems value="#{formClienti.clients}" var="client"
+						itemValue="#{client}" itemLabel="#{client.nume}" />
+				</h:selectOneMenu>
+			</h:column>
+			<h:column>
+				<h:commandLink value="Sterge comanda"
+					action="#{formComanda.delete(comanda)}" />
+				<h:link value="Editeaza Comanda" outcome="formArticolComanda">
+					<f:param name="idComanda" value="#{comanda.id}" />
+				</h:link>
+			</h:column>
+		</h:dataTable>
+		<h:commandButton value="Salveaza modificarile"
+			action="#{formComanda.saveAll}" />
+	</h:form>
+	<h:form>
+		<h2>Add Comanda</h2>
+		<h:panelGrid columns="3">
+			<h:outputText value="Data Comanda: " />
+			<h:inputText id="date" value="#{formComanda.dataComanda}" size="20"
+				required="true" label="Data Comanda">
+				<f:convertDateTime pattern="dd-MM-yyyy" />
+			</h:inputText>
+			<h:message for="date" style="color:red" />
+
+			<h:outputText value="Client:" />
+			<h:selectOneMenu id="client" value="#{formComanda.client}"
+				converter="clientConverter">
+				<f:selectItems value="#{formClienti.clients}" var="client"
+					itemValue="#{client}" itemLabel="#{client.nume}" />
+			</h:selectOneMenu>
+			<h:message for="client" style="color:red" />
+		</h:panelGrid>
+		<h:commandButton action="#{formComanda.add}" value="Adauga"></h:commandButton>
+	</h:form>
+</h:body>
+</html>
